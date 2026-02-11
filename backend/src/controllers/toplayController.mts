@@ -44,3 +44,32 @@ export const getGames = (
 export const getGame = (id: string) => {
   return gameList.find((game) => game.id === +id);
 };
+
+export const createGame = (game: string) => {
+  const newGame = new Game(Date.now(), game);
+
+  gameList.push(newGame);
+
+  return newGame;
+};
+
+export const deleteGame = (id: string) => {
+  const index = gameList.findIndex((game) => game.id === +id);
+
+  if (index >= 0) {
+    gameList.splice(index, 1);
+    return true;
+  }
+  return false;
+};
+
+export const patchGame = (game: Game) => {
+  const found = gameList.find((g) => g.id === game.id);
+
+  if (found) {
+    found.played = game.played;
+    found.title = game.title;
+  }
+
+  return found;
+};
