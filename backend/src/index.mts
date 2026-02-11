@@ -1,6 +1,6 @@
 import express, { json } from "express";
 import cors from "cors";
-import { toPlayRouter } from "./routes/toPlayRoutes.mjs";
+import { toPlayRouter } from "./routes/toPlayRouter.mjs";
 
 const app = express();
 
