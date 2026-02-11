@@ -1,5 +1,9 @@
 import express from "express";
-import { gameList, getGames } from "../controllers/toplayController.mjs";
+import {
+  gameList,
+  getGame,
+  getGames,
+} from "../controllers/toplayController.mjs";
 
 export const toPlayRouter = express.Router();
 
@@ -16,7 +20,23 @@ toPlayRouter.get("/", (req, res) => {
   }
 });
 
-//read - GET /toplay/:id
+//read - GET /toplay/1
+toPlayRouter.get("/:id", (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const game = getGame(id);
+
+    if (game) {
+      res.status(200).json(game);
+    } else {
+      res.status(400).json({ message: "No game found with id: " + id });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error });
+  }
+});
 
 //create - POST - /toplay
 

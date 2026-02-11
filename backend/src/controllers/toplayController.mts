@@ -40,3 +40,7 @@ export const getGames = (
 
   return filteredList;
 };
+
+export const getGame = (id: string) => {
+  return gameList.find((game) => game.id === +id);
+};
